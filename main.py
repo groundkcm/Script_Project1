@@ -3,6 +3,9 @@ import re
 import tkinter
 import zipfile
 import shutil
+from pptx import Presentation
+import PyPDF2
+
 
 # 디버그 기능 추가 이미 파일있으면, 학기와 강의이름 tkinter에서 입력받기
 
