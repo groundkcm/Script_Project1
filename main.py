@@ -35,16 +35,16 @@ def make_lecture_folders():
 
 
 def make_normal_folders():
-    if os.path.exists('/Lab/files'):
-        os.chdir('/Lab/files')
+    if os.path.exists('/Lab/Files'):
+        os.chdir('/Lab/Files')
     else:
-        os.makedirs('/Lab/files')
-        os.chdir('/Lab/files')
+        os.makedirs('/Lab/Files')
+        os.chdir('/Lab/Files')
 
-    for lecture in my_lectures:
-        if os.path.exists(lecture):
+    for category in normal_folders:
+        if os.path.exists(category):
             continue
-        os.mkdir(lecture)
+        os.mkdir(category)
 
 
 def move_files():
