@@ -24,7 +24,7 @@ def make_lecture_folders():
     if os.path.exists('/Univ/3-1'):
         os.chdir('/Univ/3-1')
     else:
-        os.mkdir('/Univ/3-1')
+        os.makedirs('/Univ/3-1')
         os.chdir('/Univ/3-1')
 
     for lecture in my_lectures:
