@@ -8,6 +8,11 @@ import tkinter
 # except:
 #     pass
 
+if os.path.exists('/Univ/3-1'):
+    os.chdir('/Univ/3-1')
+else:
+    os.mkdir('/Univ/3-1')
+    os.chdir('/Univ/3-1')
 my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립터 언어', '인간과 철학']
 
 
