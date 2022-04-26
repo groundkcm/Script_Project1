@@ -2,6 +2,7 @@ import os
 import re
 import tkinter
 import zipfile
+import shutil
 
 # 디버그 기능 추가 이미 파일있으면, 학기와 강의이름 tkinter에서 입력받기
 
@@ -40,6 +41,19 @@ def make_normal_folders():
 def move_files():
     os.chdir('/Users/karam/Downloads')
     file_list = []
+    for file in file_list:
+        if l3d.search(file):
+            shutil.move(file, '/Univ/3-1/3d 게임 프로그래밍')
+        elif lstl.search(file):
+            shutil.move(file, '/Univ/3-1/STL')
+        elif lnw.search(file):
+            shutil.move(file, '/Univ/3-1/네트워크 기초')
+        elif lln.search(file):
+            shutil.move(file, '/Univ/3-1/선형대수학')
+        elif lsc.search(file):
+            shutil.move(file, '/Univ/3-1/스크립트 언어')
+        elif lhp.search(file):
+            shutil.move(file, '/Univ/3-1/인간과 철학')
 
 
 make_lecture_folders()
