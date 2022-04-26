@@ -39,7 +39,20 @@ def make_lecture_folders():
 
 
 def make_normal_folders():
-    pass
+    if os.path.exists('/Lab/files'):
+
+        shutil.rmtree('/Lab/files')
+        os.makedirs('/Lab/files')
+
+        os.chdir('/Lab/files')
+    else:
+        os.makedirs('/Lab/files')
+        os.chdir('/Lab/files')
+
+    for lecture in my_lectures:
+        if os.path.exists(lecture):
+            continue
+        os.mkdir(lecture)
 
 
 def move_files():
