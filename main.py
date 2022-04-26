@@ -23,10 +23,6 @@ lhp = re.compile(r''' 인간과[ ]?철학|인철 ''', re.VERBOSE)
 
 def make_lecture_folders():
     if os.path.exists('/Lab/Univ/3-1'):
-
-        shutil.rmtree('/Lab/Univ/3-1')
-        os.makedirs('/Lab/Univ/3-1')
-
         os.chdir('/Lab/Univ/3-1')
     else:
         os.makedirs('/Lab/Univ/3-1')
@@ -40,10 +36,6 @@ def make_lecture_folders():
 
 def make_normal_folders():
     if os.path.exists('/Lab/files'):
-
-        shutil.rmtree('/Lab/files')
-        os.makedirs('/Lab/files')
-
         os.chdir('/Lab/files')
     else:
         os.makedirs('/Lab/files')
@@ -73,6 +65,8 @@ def move_files():
             shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
 
 
+if os.path.exists('/Lab'):
+    shutil.rmtree('/Lab')
 make_lecture_folders()
 make_normal_folders()
 
