@@ -17,12 +17,15 @@ import PyPDF2
 my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립터 언어', '인간과 철학']
 normal_folders = ['doc', 'ppt', 'pdf', 'hwp', 'jpg', 'png']
 
+# 다시 체크
+
 l3d = re.compile(r''' (3d|3D)? (game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍 ''', re.VERBOSE)
 lstl = re.compile(r''' stl|STL ''', re.VERBOSE)
 lnw = re.compile(r''' network|네트워크[ ]?기초?|Network ''', re.VERBOSE)
 lln = re.compile(r''' linear|선형(대)?[ ]?수학?|Linear ''', re.VERBOSE)
 lsc = re.compile(r''' script|스크립트[ ]?언어|Script ''', re.VERBOSE)
 lhp = re.compile(r''' 인간과[ ]?철학|인철 ''', re.VERBOSE)
+
 
 def make_lecture_folders():
     if os.path.exists('/Lab/Univ/3-1'):
@@ -52,7 +55,10 @@ def make_normal_folders():
 
 def move_files():
     os.chdir('/Users/karam/Downloads')
+
+    # 오늘 다운받은 파일만 해당
     file_list = []
+
     for file in file_list:
         if l3d.search(file):
             shutil.move(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
@@ -70,6 +76,7 @@ def move_files():
 
 if os.path.exists('/Lab'):
     shutil.rmtree('/Lab')
+
 make_lecture_folders()
 make_normal_folders()
 
