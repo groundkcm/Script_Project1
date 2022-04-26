@@ -22,11 +22,15 @@ lsc = re.compile(r''' script|스크립트[ ]?언어|Script ''', re.VERBOSE)
 lhp = re.compile(r''' 인간과[ ]?철학|인철 ''', re.VERBOSE)
 
 def make_lecture_folders():
-    if os.path.exists('/Univ/3-1'):
-        os.chdir('/Univ/3-1')
+    if os.path.exists('/Lab/Univ/3-1'):
+
+        shutil.rmtree('/Lab/Univ/3-1')
+        os.makedirs('/Lab/Univ/3-1')
+
+        os.chdir('/Lab/Univ/3-1')
     else:
-        os.makedirs('/Univ/3-1')
-        os.chdir('/Univ/3-1')
+        os.makedirs('/Lab/Univ/3-1')
+        os.chdir('/Lab/Univ/3-1')
 
     for lecture in my_lectures:
         if os.path.exists(lecture):
@@ -43,17 +47,17 @@ def move_files():
     file_list = []
     for file in file_list:
         if l3d.search(file):
-            shutil.move(file, '/Univ/3-1/3d 게임 프로그래밍')
+            shutil.move(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
         elif lstl.search(file):
-            shutil.move(file, '/Univ/3-1/STL')
+            shutil.move(file, '/Lab/Univ/3-1/STL')
         elif lnw.search(file):
-            shutil.move(file, '/Univ/3-1/네트워크 기초')
+            shutil.move(file, '/Lab/Univ/3-1/네트워크 기초')
         elif lln.search(file):
-            shutil.move(file, '/Univ/3-1/선형대수학')
+            shutil.move(file, '/Lab/Univ/3-1/선형대수학')
         elif lsc.search(file):
-            shutil.move(file, '/Univ/3-1/스크립트 언어')
+            shutil.move(file, '/Lab/Univ/3-1/스크립트 언어')
         elif lhp.search(file):
-            shutil.move(file, '/Univ/3-1/인간과 철학')
+            shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
 
 
 make_lecture_folders()
