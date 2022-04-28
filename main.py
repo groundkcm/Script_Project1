@@ -5,6 +5,7 @@ import zipfile
 import shutil
 from pptx import Presentation
 import PyPDF2
+import datetime
 
 
 # 디버그 기능 추가 이미 파일있으면, 학기와 강의이름 tkinter에서 입력받기
@@ -55,9 +56,16 @@ def make_normal_folders():
 
 def move_files():
     os.chdir('/Users/karam/Downloads')
+    now = datetime.datetime.now()
+    now = now.year + now.month + now.day
 
     # 오늘 다운받은 파일만 해당
-    file_list = []
+    for file in os.listdir():
+        abs_path = os.path.abspath(file)
+        ctime = os.path.getctime(abs_path)
+        cdate = datetime.datetime.fromtimestamp(ctime).strftime('%y%m%d')
+        if cdate == now:
+            file_list.append(file)
 
     for file in file_list:
         if l3d.search(file):
