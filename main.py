@@ -1,11 +1,11 @@
 import os
 import re
 import tkinter
-import zipfile
 import shutil
+import datetime
+import zipfile
 from pptx import Presentation
 import PyPDF2
-import datetime
 
 
 # 디버그 기능 추가 이미 파일있으면, 학기와 강의이름 tkinter에서 입력받기
@@ -16,7 +16,7 @@ import datetime
 #     pass
 
 my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립터 언어', '인간과 철학']
-normal_folders = ['doc', 'ppt', 'pdf', 'hwp', 'jpg', 'png']
+normal_folders = ['doc', 'ppt', 'pdf', 'hwp', 'jpg', 'png', 'txt']
 
 # 다시 체크
 
@@ -56,9 +56,9 @@ def make_normal_folders():
 
 def move_files():
     os.chdir('/Users/karam/Downloads')
-    now = datetime.datetime.now()
-    now = now.year + now.month + now.day
+    now = datetime.datetime.today().strftime('%y%m%d')
 
+    file_list = []
     # 오늘 다운받은 파일만 해당
     for file in os.listdir():
         abs_path = os.path.abspath(file)
@@ -68,18 +68,19 @@ def move_files():
             file_list.append(file)
 
     for file in file_list:
-        if l3d.search(file):
-            shutil.move(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
-        elif lstl.search(file):
-            shutil.move(file, '/Lab/Univ/3-1/STL')
-        elif lnw.search(file):
-            shutil.move(file, '/Lab/Univ/3-1/네트워크 기초')
-        elif lln.search(file):
-            shutil.move(file, '/Lab/Univ/3-1/선형대수학')
-        elif lsc.search(file):
-            shutil.move(file, '/Lab/Univ/3-1/스크립트 언어')
-        elif lhp.search(file):
-            shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
+        print(file)
+        # if l3d.search(file):
+        #     shutil.move(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
+        # elif lstl.search(file):
+        #     shutil.move(file, '/Lab/Univ/3-1/STL')
+        # elif lnw.search(file):
+        #     shutil.move(file, '/Lab/Univ/3-1/네트워크 기초')
+        # elif lln.search(file):
+        #     shutil.move(file, '/Lab/Univ/3-1/선형대수학')
+        # elif lsc.search(file):
+        #     shutil.move(file, '/Lab/Univ/3-1/스크립트 언어')
+        # elif lhp.search(file):
+        #     shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
 
 
 if os.path.exists('/Lab'):
