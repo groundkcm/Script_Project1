@@ -107,6 +107,10 @@ def move_files():
             elif lhp.search(word):
                 # shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
                 shutil.copy(file, '/Lab/Univ/3-1/인간과 철학')
+            else:
+                for n in normal_folders:
+                    if file.endswith('.' + n):
+                        shutil.copy(file, '/Lab/Files/' + n)
 
 
 if os.path.exists('/Lab'):
