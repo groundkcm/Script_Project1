@@ -83,9 +83,10 @@ def move_files():
                     for paragraph in shape.text_frame.paragraphs:
                         result.append(paragraph.text)
         elif file.endswith('.txt'):
-            pass
-        else:
-            result.append(file)
+            f = open(file, encoding='UTF-8')
+            content = f.read()
+            result.append(content)
+            f.close()
 
         for word in result:
             if lstl.search(word):
