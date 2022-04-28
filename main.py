@@ -22,7 +22,7 @@ normal_folders = ['docx', 'pptx', 'pdf', 'hwp', 'jpg', 'png', 'txt']
 
 l3d = re.compile(r'(3d|3D)?((game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍)(DirectX|Direct3D)?')
 lstl = re.compile(r'stl|STL')
-lnw = re.compile(r'network|네트워크[ ]?기초?|Network')
+lnw = re.compile(r'network|네트워크[ ]?(기초)?|Network')
 lln = re.compile(r'linear|선형(대)?[ ]?수학?|Linear')
 lsc = re.compile(r'(script|스크립트[ ]?언어|Script)(Python|python|pycharm|Pycharm)?(.py)?')
 lhp = re.compile(r'인간과[ ]?철학|인철|철학')
