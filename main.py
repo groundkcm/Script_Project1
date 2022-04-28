@@ -7,17 +7,8 @@ import zipfile
 from pptx import Presentation
 from tika import parser
 
-# 디버그 기능 추가 이미 파일있으면, 학기와 강의이름 tkinter에서 입력받기
-
-# try:
-#     pass
-# except:
-#     pass
-
 my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립터 언어', '인간과 철학']
-normal_folders = ['docx', 'pptx', 'pdf', 'hwp', 'jpg', 'png', 'txt']
-
-# 다시 체크
+normal_folders = ['docx', 'pptx', 'pdf', 'hwp', 'jpg', 'png', 'txt', 'zip']
 
 l3d = re.compile(r'(3d|3D)?((game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍)(DirectX|Direct3D)?')
 lstl = re.compile(r'stl|STL')
@@ -70,6 +61,13 @@ def move_files():
         result = []
         result.append(file)
 
+        # if file.endswith('.zip'):
+        #     fn = file.split('.zip')
+        #     fn = fn[0]
+        #     zf = zipfile.ZipFile(file)
+        #     zf.extractall('./' + fn)
+        #     zf.close()
+        #     os.chdir('./' + fn)
         if file.endswith('.pdf'):
             data = parser.from_file(file)
             content = data['content'].strip()
@@ -111,6 +109,9 @@ def move_files():
                 for n in normal_folders:
                     if file.endswith('.' + n):
                         shutil.copy(file, '/Lab/Files/' + n)
+
+        # if file.endswith('.zip'):
+        #     os.chdir('..')
 
 
 if os.path.exists('/Lab'):
