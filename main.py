@@ -19,12 +19,12 @@ normal_folders = ['doc', 'ppt', 'pdf', 'hwp', 'jpg', 'png']
 
 # 다시 체크
 
-l3d = re.compile(r''' (3d|3D)? (game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍 ''', re.VERBOSE)
-lstl = re.compile(r''' stl|STL ''', re.VERBOSE)
-lnw = re.compile(r''' network|네트워크[ ]?기초?|Network ''', re.VERBOSE)
-lln = re.compile(r''' linear|선형(대)?[ ]?수학?|Linear ''', re.VERBOSE)
-lsc = re.compile(r''' script|스크립트[ ]?언어|Script ''', re.VERBOSE)
-lhp = re.compile(r''' 인간과[ ]?철학|인철 ''', re.VERBOSE)
+l3d = re.compile(r' (3d|3D)? (game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍 ')
+lstl = re.compile(r' stl|STL ')
+lnw = re.compile(r' network|네트워크[ ]?기초?|Network ')
+lln = re.compile(r' linear|선형(대)?[ ]?수학?|Linear ')
+lsc = re.compile(r' script|스크립트[ ]?언어|Script ')
+lhp = re.compile(r' 인간과[ ]?철학|인철 ')
 
 
 def make_lecture_folders():
