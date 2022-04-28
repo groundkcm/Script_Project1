@@ -69,18 +69,42 @@ def move_files():
 
     for file in file_list:
         print(file)
-        # if l3d.search(file):
-        #     shutil.move(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
-        # elif lstl.search(file):
-        #     shutil.move(file, '/Lab/Univ/3-1/STL')
-        # elif lnw.search(file):
-        #     shutil.move(file, '/Lab/Univ/3-1/네트워크 기초')
-        # elif lln.search(file):
-        #     shutil.move(file, '/Lab/Univ/3-1/선형대수학')
-        # elif lsc.search(file):
-        #     shutil.move(file, '/Lab/Univ/3-1/스크립트 언어')
-        # elif lhp.search(file):
-        #     shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
+        result = []
+
+        if file.endswith('.pdf'):
+            pass
+        elif file.endswith('.pptx'):
+            prs = Presentation(file)
+            for slide in prs.slides:
+                for shape in slide.shapes:
+                    if not shape.has_text_frame:
+                        continue
+                    for paragraph in shape.text_frame.paragraphs:
+                        result.append(paragraph.text)
+        elif file.endswith('.txt'):
+            pass
+        else:
+            result.append(file)
+
+        for word in result:
+            if lstl.search(word):
+                # shutil.move(file, '/Lab/Univ/3-1/STL')
+                shutil.copy(file, '/Lab/Univ/3-1/STL')
+            elif l3d.search(word):
+                # shutil.move(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
+                shutil.copy(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
+            elif lnw.search(word):
+                # shutil.move(file, '/Lab/Univ/3-1/네트워크 기초')
+                shutil.copy(file, '/Lab/Univ/3-1/네트워크 기초')
+            elif lln.search(word):
+                # shutil.move(file, '/Lab/Univ/3-1/선형대수학')
+                shutil.copy(file, '/Lab/Univ/3-1/선형대수학')
+            elif lsc.search(word):
+                # shutil.move(file, '/Lab/Univ/3-1/스크립트 언어')
+                shutil.copy(file, '/Lab/Univ/3-1/스크립트 언어')
+            elif lhp.search(word):
+                # shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
+                shutil.copy(file, '/Lab/Univ/3-1/인간과 철학')
 
 
 if os.path.exists('/Lab'):
