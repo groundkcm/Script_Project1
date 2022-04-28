@@ -5,8 +5,7 @@ import shutil
 import datetime
 import zipfile
 from pptx import Presentation
-import PyPDF2
-
+from tika import parser
 
 # 디버그 기능 추가 이미 파일있으면, 학기와 강의이름 tkinter에서 입력받기
 
@@ -68,11 +67,13 @@ def move_files():
             file_list.append(file)
 
     for file in file_list:
-        print(file)
         result = []
+        result.append(file)
 
         if file.endswith('.pdf'):
-            pass
+            data = parser.from_file(file)
+            content = data['content'].strip()
+            result.append(content)
         elif file.endswith('.pptx'):
             prs = Presentation(file)
             for slide in prs.slides:
