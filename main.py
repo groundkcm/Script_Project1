@@ -84,6 +84,7 @@ def move_files():
             except Exception as e:
                 print(e)
 
+        find = False
         for word in result:
             if lstl.search(word):
                 shutil.move(file, '/Lab/Univ/3-1/STL')
@@ -106,12 +107,15 @@ def move_files():
                 find = True
                 break
             elif lhp.search(word):
-                # shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
-                shutil.copy(file, '/Lab/Univ/3-1/인간과 철학')
-            else:
-                for n in normal_folders:
-                    if file.endswith('.' + n):
-                        shutil.copy(file, '/Lab/Files/' + n)
+                shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
+                find = True
+                break
+
+        if not find:
+            for n in normal_folders:
+                if file.endswith('.' + n):
+                    shutil.move(file, '/Lab/Files/' + n)
+                break
 
     print("done")
 
