@@ -1,11 +1,12 @@
 import os
 import re
-import tkinter
 import shutil
 import datetime
 import zipfile
 from pptx import Presentation
 from tika import parser
+from tkinter import *
+from tkinter.ttk import *
 
 my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립터 언어', '인간과 철학']
 normal_folders = ['docx', 'pptx', 'pdf', 'hwp', 'jpg', 'png', 'txt', 'zip']
@@ -114,11 +115,36 @@ def move_files():
         #     os.chdir('..')
 
 
+def stop():
+    window.quit()
+
+
 if os.path.exists('/Lab'):
     shutil.rmtree('/Lab')
 
-make_lecture_folders()
-make_normal_folders()
 
-# 실시간 반복
-move_files()
+window = Tk()
+window.geometry("+0+0")
+window.resizable(False, False)
+window.bind('<Escape>', stop)
+
+label = Label(text="File Management")
+label.pack()
+# button = Button(text="Start", takefocus=False)
+# button.pack()
+command_frame = LabelFrame(text='Command')
+command_frame.pack(fill=BOTH, padx=5, pady=5)
+
+Button(command_frame, command=make_lecture_folders, text='make lecture_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+Button(command_frame, command=make_normal_folders, text='make normal_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+Button(command_frame, command=move_files, text='move files').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+
+menu = Menu()
+menu_File = Menu(menu, tearoff=False) # tearoff : menu 분리
+menu_File.add_command(label="Quit", accelerator='Ctrl+Q', command=stop)
+menu.add_cascade(label="Menu", underline=True, menu=menu_File)
+menu_Colors = Menu(menu, tearoff=False)
+window.bind_all('<Control-q>', stop)
+window.config(menu=menu)
+
+window.mainloop()
