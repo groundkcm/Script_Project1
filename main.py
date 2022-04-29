@@ -1,7 +1,7 @@
 import os
-import re
 import shutil
 import datetime
+import re
 import zipfile
 from pptx import Presentation
 from tika import parser
@@ -30,6 +30,7 @@ def make_lecture_folders():
         if os.path.exists(lecture):
             continue
         os.mkdir(lecture)
+    print("done")
 
 
 def make_normal_folders():
@@ -43,6 +44,7 @@ def make_normal_folders():
         if os.path.exists(category):
             continue
         os.mkdir(category)
+    print("done")
 
 
 l3d = re.compile(r'(3d|3D)?((game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍)?(DirectX|Direct3D)')
@@ -121,8 +123,7 @@ def move_files():
                     if file.endswith('.' + n):
                         shutil.copy(file, '/Lab/Files/' + n)
 
-        # if file.endswith('.zip'):
-        #     os.chdir('..')
+    print("done")
 
 
 def stop():
