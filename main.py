@@ -53,7 +53,7 @@ lsc = re.compile(r'(script|스크립트[ ]?(언어)?|Script|Python|python|pychar
 lhp = re.compile(r'인간과[ ]?철학|인철|철학')
 
 def move_files():
-    os.chdir('/Users/karam/Downloads')
+    os.chdir('/Lab/Downloads')
     now = datetime.datetime.today().strftime('%y%m%d')
 
     file_list = []
@@ -126,8 +126,12 @@ def stop():
     window.quit()
 
 
-if os.path.exists('/Lab'):
-    shutil.rmtree('/Lab')
+# shutil.rmtree('/Lab/Downloads')
+# shutil.copytree('/Lab/backup', '/Lab/Downloads')
+if os.path.exists('/Lab/Files'):
+    shutil.rmtree('/Lab/Files')
+if os.path.exists('/Lab/Univ'):
+    shutil.rmtree('/Lab/Univ')
 
 
 window = Tk()
