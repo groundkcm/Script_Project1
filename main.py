@@ -11,14 +11,6 @@ from tkinter.ttk import *
 my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립트 언어', '인간과 철학']
 normal_folders = ['docx', 'pptx', 'pdf', 'hwp', 'jpg', 'png', 'txt', 'zip']
 
-l3d = re.compile(r'(3d|3D)?((game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍)(DirectX|Direct3D)?')
-lstl = re.compile(r'stl|STL')
-lnw = re.compile(r'network|네트워크[ ]?(기초)?|Network')
-lln = re.compile(r'linear|선형(대)?[ ]?수학?|Linear')
-lsc = re.compile(r'(script|스크립트[ ]?언어|Script)(Python|python|pycharm|Pycharm)?(.py)?')
-lhp = re.compile(r'인간과[ ]?철학|인철|철학')
-
-
 def make_lecture_folders():
     if os.path.exists('/Lab/Univ/3-1'):
         os.chdir('/Lab/Univ/3-1')
@@ -71,13 +63,6 @@ def move_files():
         result = []
         result.append(file)
 
-        # if file.endswith('.zip'):
-        #     fn = file.split('.zip')
-        #     fn = fn[0]
-        #     zf = zipfile.ZipFile(file)
-        #     zf.extractall('./' + fn)
-        #     zf.close()
-        #     os.chdir('./' + fn)
         if file.endswith('.pdf'):
             data = parser.from_file(file)
             content = data['content'].strip()
@@ -101,20 +86,25 @@ def move_files():
 
         for word in result:
             if lstl.search(word):
-                # shutil.move(file, '/Lab/Univ/3-1/STL')
-                shutil.copy(file, '/Lab/Univ/3-1/STL')
+                shutil.move(file, '/Lab/Univ/3-1/STL')
+                find = True
+                break
             elif l3d.search(word):
-                # shutil.move(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
-                shutil.copy(file, '/Lab/Univ/3-1/3d 게임 프로그래밍')
+                shutil.move(file, '/Lab/Univ/3-1/3D 게임 프로그래밍')
+                find = True
+                break
             elif lnw.search(word):
-                # shutil.move(file, '/Lab/Univ/3-1/네트워크 기초')
-                shutil.copy(file, '/Lab/Univ/3-1/네트워크 기초')
+                shutil.move(file, '/Lab/Univ/3-1/네트워크 기초')
+                find = True
+                break
             elif lln.search(word):
-                # shutil.move(file, '/Lab/Univ/3-1/선형대수학')
-                shutil.copy(file, '/Lab/Univ/3-1/선형대수학')
+                shutil.move(file, '/Lab/Univ/3-1/선형대수학')
+                find = True
+                break
             elif lsc.search(word):
-                # shutil.move(file, '/Lab/Univ/3-1/스크립트 언어')
-                shutil.copy(file, '/Lab/Univ/3-1/스크립트 언어')
+                shutil.move(file, '/Lab/Univ/3-1/스크립트 언어')
+                find = True
+                break
             elif lhp.search(word):
                 # shutil.move(file, '/Lab/Univ/3-1/인간과 철학')
                 shutil.copy(file, '/Lab/Univ/3-1/인간과 철학')
