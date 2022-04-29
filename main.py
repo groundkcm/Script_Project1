@@ -2,11 +2,13 @@ import os
 import shutil
 import datetime
 import re
-import zipfile
+import logging
 from pptx import Presentation
 from tika import parser
 from tkinter import *
 from tkinter.ttk import *
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립트 언어', '인간과 철학']
 normal_folders = ['docx', 'pptx', 'pdf', 'hwp', 'jpg', 'png', 'txt', 'zip']
@@ -22,7 +24,8 @@ def make_lecture_folders():
         if os.path.exists(lecture):
             continue
         os.mkdir(lecture)
-    print("done")
+        logging.info(f'created folder {lecture}')
+    logging.info(f'Done')
 
 
 def make_normal_folders():
@@ -36,7 +39,8 @@ def make_normal_folders():
         if os.path.exists(category):
             continue
         os.mkdir(category)
-    print("done")
+        logging.info(f'created folder {category}')
+    logging.info(f'Done')
 
 
 l3d = re.compile(r'(3d|3D)?((game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍)?(DirectX|Direct3D)')
@@ -54,10 +58,11 @@ def move_files():
     # 오늘 다운받은 파일만 해당
     for file in os.listdir():
         abs_path = os.path.abspath(file)
-        ctime = os.path.getctime(abs_path)
+        ctime = os.path.getatime(abs_path)
         cdate = datetime.datetime.fromtimestamp(ctime).strftime('%y%m%d')
         if cdate == now:
             file_list.append(file)
+    print(file_list)
 
     for file in file_list:
         result = []
@@ -115,9 +120,7 @@ def move_files():
             for n in normal_folders:
                 if file.endswith('.' + n):
                     shutil.move(file, '/Lab/Files/' + n)
-                break
-
-    print("done")
+    logging.info(f'Done')
 
 
 def stop():
