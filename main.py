@@ -8,7 +8,7 @@ from tika import parser
 from tkinter import *
 from tkinter.ttk import *
 
-my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립터 언어', '인간과 철학']
+my_lectures = ['3D 게임 프로그래밍', 'STL', '네트워크 기초', '선형대수학', '스크립트 언어', '인간과 철학']
 normal_folders = ['docx', 'pptx', 'pdf', 'hwp', 'jpg', 'png', 'txt', 'zip']
 
 l3d = re.compile(r'(3d|3D)?((game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍)(DirectX|Direct3D)?')
@@ -44,6 +44,13 @@ def make_normal_folders():
             continue
         os.mkdir(category)
 
+
+l3d = re.compile(r'(3d|3D)?((game|Game)[ ]?(Programming|programming)|게임[ ]?프로그래밍)?(DirectX|Direct3D)')
+lstl = re.compile(r'(stl|STL)(vector)?')
+lnw = re.compile(r'network|네트워크[ ]?(기초)?|Network')
+lln = re.compile(r'linear|선형(대)?[ ]?(수학)?|Linear')
+lsc = re.compile(r'(script|스크립트[ ]?(언어)?|Script|Python|python|pycharm|Pycharm)(.py)?')
+lhp = re.compile(r'인간과[ ]?철학|인철|철학')
 
 def move_files():
     os.chdir('/Users/karam/Downloads')
